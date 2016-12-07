@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>房介大师</title>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/bulma.css" rel="stylesheet" />
+		<link href="css/md.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/iconfont.css" />
+		<link rel="stylesheet" href="css/sada.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="nprogress-container"></div>
+			<section class="hero is-bold app-navbar animated slideInDown">
+				<div class="hero-head">
+					<nav style="min-height:110px" class="nav">
+						<a href="#" class="logo"></a>
+						<div class="nav-left">
+							<a href="#" class="nav-item is-brand"></a>
+							<div href="#" class="nav-item is-active">
+								<p class="subtitle">首页</p>
+							</div>
+							<a href="#" class="nav-item">
+								<p class="subtitle">房源管理</p>
+							</a>
+							<a href="#" class="nav-item">
+								<p class="subtitle subtitle2">客源管理</p>
+							</a>
+							<a href="#" class="nav-item">
+								<p class="subtitle">业务动态</p>
+							</a>
+							<a href="#" class="nav-item">
+								<p class="subtitle">实用工具</p>
+							</a>
+							<a href="#" class="nav-item">
+								<p class="subtitle">合同服务</p>
+							</a>
+							<a href="#" class="nav-item">
+								<p class="subtitle">统计中心</p>
+							</a>
+							<a href="#" class="nav-item">
+								<p class="subtitle">门店管理</p>
+							</a>
+						</div>
+						<div style="flex:0.5" class="nav-right nav-menu">
+							<p class="has-text-left"><strong>韩楷</strong><br /> <small>公司：中房盟</small> <br /> <small>部门：运营部</small> <br /> <small>职务：管理员</small> <br /></p>
+							<span class="nav-item"><a href="#" class="button is-danger is-inverted is-small exit-btn"><span>退出</span></a>
+							</span>
+						</div>
+					</nav>
+				</div>
+			</section>
+
+			<aside class="menu app-sidebar animated slideInLeft" style="width:212px;border-right:1px solid #f2f2f2;">
+				<ul class="menu-list menu-left">
+					<li class="active">
+						<a>
+							房源列表
+							<span class="icon is-small is-angle"><i class="fa fa-angle-right"></i></span></a>
+					</li>
+					<li>
+						<a>
+							房源跟进列表
+							<span class="icon is-small is-angle"><i class="fa fa-angle-right"></i></span></a>
+					</li>
+					<li>
+						<a>
+							房源带看列表
+							<span class="icon is-small is-angle"><i class="fa fa-angle-right"></i></span></a>
+					</li>
+					<li>
+						<a>
+							执行任务列表
+							<span class="icon is-small is-angle"><i class="fa fa-angle-right"></i></span></a>
+					</li>
+					<li>
+						<a>
+							分配任务列表
+							<span class="icon is-small is-angle"><i class="fa fa-angle-right"></i></span></a>
+					</li>
+				</ul>
+			</aside>
+
+			<div class="app-main">
+				<div class="container is-fluid is-marginless app-content">
+					<nav class="level app-levelbar">
+						<div class="level-left">
+							<div class="level-item">
+							</div>
+						</div>
+						<div class="level-right is-hidden-mobile"></div>
+					</nav>
+
+					<div class="animated down">
+						<div>
+							<div class="container is-fluid is-marginless app-content">
+								<div class="tile is-ancestor topfill">
+									<div class="tile is-parent">
+										<div class="tile is-child box">
+											<div class="control is-horizontal">
+												<span class="select">
+									                <select v-model="filterHelper.trustDt" @change="dateSelectChanged('trustDt', 'DtSel')">
+									                  <option value="">委托日期（全部）</option>
+									                  <option v-for="(item, index) in optionsData('DtSel')" v-bind:value="index">{{item}}</option>
+									                </select>
+									              </span>
+												<span class="select">
+									                <select v-model="filter.statusKbn">
+									                  <option value="">状态（全部）</option>
+									                  <option v-for="(item, index) in optionsData('StatusKbn')" v-bind:value="index">{{item}}</option>
+									                </select>
+									              </span>
+												<span class="select">
+									                <select v-model="filter.tradeKbn" @change="tradeKbnChanged()">
+									                  <option value=1>出售</option>
+									                  <option value=2>出租</option>
+									                </select>
+									              </span>
+												<span class="select">
+									                <select v-model="filter.privyKbn">
+									                  <option value="">盘别（全部）</option>
+									                  <option v-for="(item, index) in optionsData('PrivyKbn')" v-bind:value="index">{{item}}</option>
+									                </select>
+									              </span>
+												<input type="text" class="input input-160" placeholder="房源编号/小区/电话" v-model="filter.propertyNo" style="margin-right:10px" />
+												<input type="text" class="input input-60" placeholder="栋座" v-model="filter.buildingNo" style="margin-right:10px;" />
+												<input type="text" class="input input-60" placeholder="房号" v-model="filter.roomNo" />
+												<a class="button is-danger wl-btn is-outlined" @click="fetchData(0)">查询</a>
+												<a class="button is-danger wl-btn is-outlined" @click="resetFilter()">重置</a>
+											</div>
+											<div class="control is-horizontal">
+												<span class="select">
+											                <select v-model="filter.districtNo" @change="districtChanged()">
+											                  <option value="">区域（全部）</option>
+											                  <option v-for="(item, index) in districts()" v-bind:value="index">{{item}}</option>
+											                </select>
+											                </span>
+												<span class="select">
+											                <select v-model="filter.areaNo">
+											                  <option value="">板块（全部）</option>
+											                  <option v-for="(item, index) in areas()" v-bind:value="item.AreaNo">{{item.AreaNm}}</option>
+											                </select>
+											                </span>
+												<span class="select">
+											                  <select v-model="filterHelper.countF" @change="minMaxSelectChanged('countF', 'CountFSel')">
+											                    <option value="">房型（全部）</option>
+											                    <option v-for="(item, index) in optionsData('CountFSel')" v-bind:value="index">{{item}}</option>
+											                  </select>
+											                </span>
+												<span class="select" v-if="filter.tradeKbn==1">
+											                  <select v-model="filterHelper.price" @change="minMaxSelectChanged('price','SalePriceSel')">
+											                    <option value="">价格（全部）</option>
+											                    <option v-for="(item, index) in optionsData('SalePriceSel')" v-bind:value="index">{{item}}</option>
+											                  </select>
+											                </span>
+												<span class="select" v-if="filter.tradeKbn==2">
+											                  <select v-model="filterHelper.price" @change="minMaxSelectChanged('price', 'RentPriceSel')">
+											                    <option value="">价格（全部）</option>
+											                    <option v-for="(item, index) in optionsData('RentPriceSel')" v-bind:value="index">{{item}}</option>
+											                  </select>
+											                </span>
+												<span class="select">
+											                  <select v-model="filterHelper.buildSquare"
+											                          @change="minMaxSelectChanged('buildSquare', 'BuildSquareSel')">
+											                    <option value="">面积（全部）</option>
+											                    <option v-for="(item, index) in optionsData('BuildSquareSel')" v-bind:value="index">{{item}}</option>
+											                  </select>
+											                </span>
+												<span class="select">
+											                  <select v-model="filterHelper.floor" @change="minMaxSelectChanged('floor', 'FloorSel')">
+											                    <option value="">楼层（全部）</option>
+											                    <option v-for="(item, index) in optionsData('FloorSel')" v-bind:value="index">{{item}}</option>
+											                  </select>
+											                </span>
+												<span class="select">
+											                  <select v-model="filter.directionKbn">
+											                    <option value="">朝向（全部）</option>
+											                    <option v-for="(item, index) in optionsData('DirectionKbn')" v-bind:value="index">{{item}}</option>
+											                  </select>
+											                </span>
+											</div>
+											<div class="control is-horizontal">
+												<span class="select">
+													                  <select v-model="filterHelper.lastFollowDt" @change="dateSelectChanged('lastFollowDt', 'DtSel')">
+													                    <option value="">最后跟进日期（全部）</option>
+													                    <option v-for="(item, index) in optionsData('DtSel')" v-bind:value="index">{{item}}</option>
+													                  </select>
+													                </span>
+												<span class="select">
+													                  <select v-model="filter.usageKbn">
+													                    <option value="">用途（全部）</option>
+													                    <option v-for="(item, index) in optionsData('UsageKbn')" v-bind:value="index">{{item}}</option>
+													                  </select>
+													                </span>
+												<span class="select">
+													                  <select v-model="filter.typeKbn">
+													                    <option value="">类型（全部）</option>
+													                    <option v-for="(item, index) in optionsData('TypeKbn')" v-bind:value="index">{{item}}</option>
+													                  </select>
+													                </span>
+												<label class="checkbox">
+													                  <input type="checkbox" autocomplete="off" v-model="filter.recommandFlg"/> 优质房
+													                </label>
+												<label class="checkbox">
+													                  <input type="checkbox" autocomplete="off" /> 网络房
+													                </label>
+												<label class="checkbox">
+													                  <input type="checkbox" autocomplete="off" /> 带车位
+													                </label>
+												<label class="checkbox">
+													                  <input type="checkbox" autocomplete="off" /> 满两年
+													                </label>
+												<label class="checkbox">
+													                  <input type="checkbox" autocomplete="off" /> 唯一房
+													                </label>
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+								<div class="table-bod">
+									<div class="control-bd">
+										<a class="is-btn is-white modal-button" @click="openModal('addHouseModalEnable')">新增</a>
+										<a class="is-btn is-white" @click="fetchData(0)">刷新</a>
+									</div>
+
+									<div class="table-over">
+										<table class="table is-bordered is-striped table-self">
+											<thead>
+												<tr>
+													<th>操作</th>
+													<th>标签</th>
+													<th>房源编号<i v-bind:class="['fa', classForSort('PropertyNo'), 'fa-self']" aria-hidden="true" @click="toggleOrderType('PropertyNo')"></i></th>
+													<th>交易</th>
+													<th>区域</th>
+													<th>小区</th>
+													<th>栋座</th>
+													<th>房号</th>
+													<th>楼层<i v-bind:class="['fa', classForSort('Floor'), 'fa-self']" aria-hidden="true" @click="toggleOrderType('Floor')"></i></th>
+													<th>房型</th>
+													<th>面积<i v-bind:class="['fa', classForSort('BuildSquare'), 'fa-self']" aria-hidden="true" @click="toggleOrderType('BuildSquare')"></i></th>
+													<th>朝向</th>
+													<th v-if="filter.tradeKbn==1">售/租总价<i v-bind:class="['fa', classForSort('SalePrice'), 'fa-self']" aria-hidden="true" @click="toggleOrderType('SalePrice')"></i></th>
+													<th v-if="filter.tradeKbn==2">售/租总价<i v-bind:class="['fa', classForSort('RentPrice'), 'fa-self']" aria-hidden="true" @click="toggleOrderType('RentPrice')"></i></th>
+													<th>售单价<i v-bind:class="['fa', classForSort('SalePriceUnit'), 'fa-self']" aria-hidden="true" @click="toggleOrderType('SalePriceUnit')"></i>
+													</th>
+													<th>最后跟进日<i v-bind:class="['fa', classForSort('LastFollowDt'), 'fa-self']" aria-hidden="true" @click="toggleOrderType('LastFollowDt')"></i>
+													</th>
+													<th>委托日<i v-bind:class="['fa', classForSort('TrustDt'), 'fa-self']" aria-hidden="true" @click="toggleOrderType('TrustDt')"></i></th>
+													<th>部门</th>
+													<th>员工</th>
+													<th>公私</th>
+												</tr>
+
+											</thead>
+											<tbody>
+												<tr v-for="item in $store.getters.properties">
+													<td>
+														<a class="iconfont icon-xiangqing-copy wi" @click="fetchPropertyDetail(item.PropertyId, 0)" title="详情"></a>
+														<a class="iconfont icon-xiugai-copy wi" @click="updateProperty(item.PropertyId)" title="修改"></a>
+														<a class="iconfont icon-xiegenjin-copy wi" @click="writeFollowUp(item.PropertyId)" title="写跟进"></a>
+														<a class="iconfont icon-kangenjin-copy wi" @click="fetchPropertyDetail(item.PropertyId, 1)" title="看跟进"></a>
+														<a class="iconfont icon-xierenwu-copy wi" title="写任务"></a>
+														<a class="iconfont icon-shanchu-copy wi" title="删除"></a>
+													</td>
+													<td>
+														<span v-if="item.RecommandFlg==1" class="square you">优</span>
+														<span v-if="item.WebFlg==1" class="square wang">网</span>
+														<span v-if="item.WithParkFlg==1" class="square che">车</span>
+														<span v-if="item.TwoYearFlg==1" class="square liang">两</span>
+														<span v-if="item.OnlyOneFlg==1" class="square wei">唯</span>
+													</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<td>ax000001</td>
+													<!--<td>{{ item.PropertyNo }}</td>-->
+													<!--<td>{{ item.TradeKbn }}</td>
+													<td>{{ item.DistrictNm }}</td>
+													<td>{{ item.EstateNm }}</td>
+													<td>{{ item.BuildingNo }}栋</td>
+													<td>{{ item.RoomNo }}</td>
+													<td>{{ item.Floor }}/{{ item.FloorAll }}</td>
+													<td>{{ item.CountF }}-{{ item.CountT }}-{{ item.CountW }}-{{ item.CountY?item.CountY:0}}</td>
+													<td>{{ item.BuildSquare }}平米</td>
+													<td>{{ item.DirectionKbn }}</td>
+													<td v-if="filter.tradeKbn==1">{{ item.SalePrice }}万</td>
+													<td v-if="filter.tradeKbn==2">{{ item.RentPrice }}</td>
+													<td>{{ item.SalePriceUnit }}</td>
+													<td>{{ item.LastFollowDt }}</td>
+													<td>{{ item.TrustDt }}</td>
+													<td>{{ item.DeptNm }}</td>
+													<td>{{ item.Name }}</td>
+													<td>{{ item.PrivyKbn }}</td>-->
+												</tr>
+
+											</tbody>
+										</table>
+									</div>
+									<div class="page-border">
+										<ul class="page-self">
+											<li>
+												<a>
+													<<</a>
+											</li>
+											<li>
+												<a>
+													<</a>
+											</li>
+											<li class="active">
+												<a>1</a>
+											</li>
+											<li>
+												<a>2</a>
+											</li>
+											<li>
+												<a>3</a>
+											</li>
+											<li>
+												<a>4</a>
+											</li>
+											<li>
+												<a>5</a>
+											</li>
+											<li>
+												<a>></a>
+											</li>
+											<li>
+												<a>>></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="js/jquery-2.2.0.min.js"></script>
+	<script src="js/bulma.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script>
+	</script>
+
+</html>

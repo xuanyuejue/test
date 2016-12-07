@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>房介大师</title>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/bulma.css" rel="stylesheet" />
+		<link href="css/md.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/sada.css" />
+		<link rel="stylesheet" href="css/iconfont.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="nprogress-container"></div>
+			<section class="hero is-bold app-navbar animated slideInDown">
+				<div class="hero-head">
+					<nav style="min-height:110px" class="nav">
+						<a href="#" class="logo"></a>
+						<div class="nav-left">
+							<a href="#" class="nav-item is-brand"></a>
+							<div href="#" class="nav-item is-active">
+								<p class="subtitle">首页</p>
+							</div>
+							<a href="#" class="nav-item">
+								<p class="subtitle subtitle2">房源管理</p>
+							</a>
+							<a href="#" class="nav-item">
+								<p class="subtitle">客源管理</p>
+							</a>
+							<a href="#" class="nav-item">
+								<p class="subtitle">业务动态</p>
+							</a>
+							<a href="#" class="nav-item">
+								<p class="subtitle">实用工具</p>
+							</a>
+							<a href="#" class="nav-item">
+								<p class="subtitle">合同服务</p>
+							</a>
+							<a href="#" class="nav-item">
+								<p class="subtitle">统计中心</p>
+							</a>
+							<a href="#" class="nav-item">
+								<p class="subtitle">门店管理</p>
+							</a>
+						</div>
+						<div style="flex:0.5" class="nav-right nav-menu">
+							<p class="has-text-left"><strong>韩楷</strong><br /> <small>公司：中房盟</small> <br /> <small>部门：运营部</small> <br /> <small>职务：管理员</small> <br /></p>
+							<span class="nav-item"><a href="#" class="button is-danger is-inverted is-small exit-btn"><span>退出</span></a>
+							</span>
+						</div>
+					</nav>
+				</div>
+			</section>
+
+			<aside class="menu app-sidebar animated slideInLeft" style="width:212px;border-right:1px solid #f2f2f2;">
+				<ul class="menu-list menu-left">
+					<li class="active">
+						<a>
+							客源列表
+							<span class="icon is-small is-angle"><i class="fa fa-angle-right"></i></span></a>
+					</li>
+					<li>
+						<a>
+							客源跟进列表
+							<span class="icon is-small is-angle"><i class="fa fa-angle-right"></i></span></a>
+					</li>
+					<li>
+						<a>
+							客源带看列表
+							<span class="icon is-small is-angle"><i class="fa fa-angle-right"></i></span></a>
+					</li>
+					<li>
+						<a>
+							执行任务列表
+							<span class="icon is-small is-angle"><i class="fa fa-angle-right"></i></span></a>
+					</li>
+					<li>
+						<a>
+							分配任务列表
+							<span class="icon is-small is-angle"><i class="fa fa-angle-right"></i></span></a>
+					</li>
+				</ul>
+			</aside>
+
+			<div class="app-main">
+				<div class="container is-fluid is-marginless app-content">
+					<nav class="level app-levelbar">
+						<div class="level-left">
+							<div class="level-item">
+							</div>
+						</div>
+						<div class="level-right is-hidden-mobile"></div>
+					</nav>
+
+					<div class="animated down">
+						<div>
+							<div class="container is-fluid is-marginless app-content">
+
+								<div class="tile is-ancestor topfill">
+									<div class="tile is-parent">
+										<div class="tile is-child box">
+											<div class="control is-horizontal">
+												<input type="text" class="input input-240" placeholder="请输入楼盘名称" />
+												<a class="button is-danger wl-btn is-outlined">查询</a>
+												<a class="button is-danger wl-btn is-outlined modal-button" data-target="#">重置</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="table-bod">
+									<div class="table-over">
+										<table class="table is-bordered is-striped table-self">
+											<thead>
+												<tr>
+													<th>操作</th>
+													<th>板块</th>
+													<th>楼盘名称</th>
+													<th>用途</th>
+													<th>类型</th>
+													<th>建房</th>
+													<th>地址 </th>
+													<th>售均价 </th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														<a class="button is-danger is-outlined"><span class="iconfont icon-dianping-copy" ></span></a>
+														<a class="button is-danger is-outlined"><span class="iconfont icon-bianji-copy" ></span></a>
+														<a class="button is-danger is-outlined"><span class="iconfont icon-chakan-copy" ></span></a>
+														<a class="button is-danger is-outlined"><span class="iconfont icon-shanchu-copy" ></span></a>
+													</td>
+													<td>长寿路板块</td>
+													<td>幸福家园</td>
+													<td>住宅</td>
+													<td>高层</td>
+													<td>2000年</td>
+													<td>澳门路常德路</td>
+													<td>700万</td>
+												</tr>
+												<tr>
+													<td>
+														<a class="button is-danger is-outlined"><span class="iconfont icon-dianping-copy" ></span></a>
+														<a class="button is-danger is-outlined"><span class="iconfont icon-bianji-copy" ></span></a>
+														<a class="button is-danger is-outlined"><span class="iconfont icon-chakan-copy" ></span></a>
+														<a class="button is-danger is-outlined"><span class="iconfont icon-shanchu-copy" ></span></a>
+													</td>
+													<td>长寿路板块</td>
+													<td>幸福家园</td>
+													<td>住宅</td>
+													<td>高层</td>
+													<td>2000年</td>
+													<td>澳门路常德路</td>
+													<td>700万</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="page-border">
+										<ul class="page-self">
+											<li>
+												<a>
+													<<</a>
+											</li>
+											<li>
+												<a>
+													<</a>
+											</li>
+											<li class="active">
+												<a>1</a>
+											</li>
+											<li>
+												<a>2</a>
+											</li>
+											<li>
+												<a>3</a>
+											</li>
+											<li>
+												<a>4</a>
+											</li>
+											<li>
+												<a>5</a>
+											</li>
+											<li>
+												<a>></a>
+											</li>
+											<li>
+												<a>>></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="js/jquery-2.2.0.min.js"></script>
+	<script src="js/bulma.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script>
+		
+	</script>
+
+</html>

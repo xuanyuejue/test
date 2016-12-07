@@ -1,0 +1,110 @@
+.hero.fjds-navbar {
+	position: fixed;
+	min-width: 100%;
+	z-index: 1024;
+	box-shadow: 0 2px 3px rgba(17, 17, 17, 0.1), 0 0 0 1px rgba(17, 17, 17, 0.1);
+	background-color: #d81a21;
+}
+
+.fjds-sidebar {
+	position: fixed;
+	top: 100px;
+	left: 0;
+	bottom: 0;
+	padding: 20px 0 50px;
+	width: 180px;
+	min-width: 45px;
+	max-height: 100vh;
+	height: calc(100% - 50px);
+	z-index: 1023;
+	background: #FFF;
+	box-shadow: 0 2px 3px rgba(17, 17, 17, 0.1), 0 0 0 1px rgba(17, 17, 17, 0.1);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.fjds-main {
+	padding-top: 100px;
+	margin-left: 180px;
+	transform: translate3d(0, 0, 0);
+}
+html{
+	font-family: "微软雅黑";
+}
+.fjds-content {
+	padding: 20px;
+}
+
+.modal {
+	text-align: center;
+}
+
+.modal-card-body p {
+	padding: 5px 0;
+	line-height: 1rem;
+}
+
+.modal-card-head,
+.modal-card-foot {
+	text-align: center;
+	
+}
+
+@media screen and (min-width: 769px) {
+	.modal-content,
+	.modal-card {
+		width: 500px;
+	}
+}
+.has-text-left{
+	margin-right: 35px;
+	padding-top: 10px;
+	color: #fff;
+}
+strong{
+	color: #fff;
+}
+.tit {
+	height: 32px;
+	line-height: 32px;
+}
+.button.exit-btn{
+	border-radius: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-right: 35px;
+    color: #ff3860;
+}
+.button.exit-btn:hover{
+    color: #ff3860;
+    background-color: #f2f2f2
+}
+.modal-card-head{
+	background-color: #d81a21;
+	padding: 10px;
+}
+.modal-card-foot{
+	background-color: white;
+	border-top: none;
+	text-align: center;
+}
+.modal-foot{
+	margin: 0 auto;
+}
+td p, .table th {
+	text-align: center;
+}
+.table td,.table th{
+	vertical-align: middle;
+}
+
+a.active{
+	/*background-color: #B5B5B5;
+	color: red;*/
+}
+.button.is-danger{
+	background-color: #d81a21;
+}
+.nav-item img {
+    max-height: 80px;
+}

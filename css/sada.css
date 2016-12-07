@@ -1,0 +1,80 @@
+.app-main {
+	margin-left: 220px;
+}
+
+.table-self1 {
+	font-size: 14px;
+	color: #333;
+	margin-bottom: 0px
+}
+
+.table-self1 thead {
+	background-color: #CCC
+}
+
+.table-self1 td,
+.table-self1 th {
+	text-align: center;
+	vertical-align: middle;
+}
+.table-over{
+	/*min-width: 1400px;*/
+}
+.wi {
+	border-width: 0;
+	color: #93140e;
+}
+
+.iconfont {
+	font-size: 20px;
+}
+
+.wi:hover {
+	/*background-color: transparent;*/
+}
+
+.button.wi {
+	padding: 0;
+	/*border-radius: 50%;*/
+}
+
+tr td:first-child {
+	width: 350px;
+}
+
+.square {
+	width: 20px;
+	height: 20px;
+	margin: 0px 2.5px;
+	border: 1px solid #000;
+	border-radius: 2px;
+	line-height: 20px;
+	text-align: center;
+	display: inline-block;
+	font-size: 12px;
+}
+
+.you {
+	color: #991111;
+	border-color: #991111;
+}
+
+.wang {
+	color: #DB1414;
+	border-color: #DB1414;
+}
+
+.che {
+	color: #EFA016;
+	border-color: #efa016;
+}
+
+.liang {
+	color: #68b6d8;
+	border-color: #68b6d8;
+}
+
+.wei {
+	color: #6db289;
+	border-color: #6db289;
+}
